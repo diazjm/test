@@ -21,13 +21,14 @@ public class NewTest {
 	private String firstName = "ajksdksanjkdsfnksd";
 	private String lastName = "aaaaaa";
   
-	// html ids
+	/*// html ids
 	private String usernameId = "employee_username";
-	private String passwordId = "employee_password";
+	private String passwordId = "employee_password";*/
 	
 	@BeforeTest
 	public void beforeTest() {
 		driverSetup();
+		//driver.get(testURL);
 	}
 
 	@AfterTest
@@ -37,15 +38,16 @@ public class NewTest {
 	
 	@Test
 	public void test(){
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.loginAs(username, password);
-		MainPage mainPage = new MainPage(driver);
-		mainPage.pressAddEmployeeButton();
-		AddEmployeePage addEmployeePage = new AddEmployeePage(driver);
+		LoginPage loginPage = new LoginPage(driver,testURL);
+		MainPage mainPage = loginPage.loginAs(username, password);
+		//MainPage mainPage = new MainPage(driver);
+		AddEmployeePage addEmployeePage = mainPage.pressAddEmployeeButton();
+		//AddEmployeePage addEmployeePage = new AddEmployeePage(driver);
 		addEmployeePage.fillOutMinimumFormParameters(username, firstName, lastName);
-		mainPage.typeIntoSearchBar(firstName);
+		mainPage = new MainPage(addEmployeePage.driver);
+		//mainPage.typeIntoSearchBar(firstName);
 		
-		assert mainPage.getTopFirstName().equalsIgnoreCase(firstName);
+		assert mainPage.typeIntoSearchBar(firstName).getTopFirstName().equalsIgnoreCase(firstName);
 		
 		//testLogin();
 		//testAddEmployee();

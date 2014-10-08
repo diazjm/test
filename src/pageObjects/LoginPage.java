@@ -7,8 +7,9 @@ public class LoginPage {
 	
 	private final WebDriver driver;
 	
-	public LoginPage(WebDriver driver){
+	public LoginPage(WebDriver driver, String URL){
 		this.driver = driver;
+		driver.get(URL);
 		
 		// Check that we're on the right page.
         if (!"BlueSource".equals(driver.getTitle())) {
@@ -22,7 +23,7 @@ public class LoginPage {
     By passwordFormLocator = By.id("employee_password");
     By loginButtonLocator = By.name("commit");
     
-    public LoginPage loginAs(String username, String password){
+    public MainPage loginAs(String username, String password){
     	typeUsername(username);
     	typePassword(password);
     	return pressLoginButton();
@@ -36,8 +37,8 @@ public class LoginPage {
     	driver.findElement(passwordFormLocator).sendKeys(password);   	
     	return this;
     }
-    public LoginPage pressLoginButton(){
+    public MainPage pressLoginButton(){
     	driver.findElement(loginButtonLocator).click();	
-    	return this;
+    	return new MainPage(driver);
     }
 }

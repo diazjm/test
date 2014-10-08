@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AddEmployeePage {
 	
-	private final WebDriver driver;
+	public final WebDriver driver;
 	
 	public AddEmployeePage(WebDriver driver){
 		this.driver = driver;

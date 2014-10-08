@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class MainPage {
 
-	private final WebDriver driver;
+	public final WebDriver driver;
 	
 	private int tableIterator = 0;
 	
@@ -24,9 +24,9 @@ public class MainPage {
 	By searchBarLocator = By.className("form-control");
 	By topFirstNameLocator = By.className("ng-binding");
 	
-	public MainPage pressAddEmployeeButton(){
+	public AddEmployeePage pressAddEmployeeButton(){
     	driver.findElement(addEmployeeButtonLocator).click();	
-    	return this;
+    	return new AddEmployeePage(this.driver);
 	}
 	public MainPage typeIntoSearchBar(String searchInput){
 		driver.findElement(searchBarLocator).sendKeys(searchInput);
