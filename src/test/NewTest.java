@@ -3,6 +3,7 @@ package test;
 import java.util.UUID;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
@@ -56,7 +57,9 @@ public class NewTest {
 	
 	
 	public void driverSetup(){
+		//System.setProperty("webdriver.gecko.driver", "C:\Users\jonathan.diaz\workspace");
 		driver = new FirefoxDriver();
+		//driver = new ChromeDriver();
 		driver.get(testURL);
 	}
 	public void driverExit(){
